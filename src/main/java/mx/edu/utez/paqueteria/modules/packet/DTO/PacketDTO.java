@@ -1,6 +1,7 @@
 package mx.edu.utez.paqueteria.modules.packet.DTO;
 
 import mx.edu.utez.paqueteria.modules.article.DTO.ArticlePacketDTO;
+import mx.edu.utez.paqueteria.modules.packet.PacketStatus;
 import mx.edu.utez.paqueteria.modules.user.DTO.UserPacketDTO;
 
 import java.util.List;
@@ -9,14 +10,14 @@ public class PacketDTO {
     private long id;
     private String orderedOn;
     private boolean delivered;
-    private int status;
+    private PacketStatus status;
     private UserPacketDTO user;
     private List<ArticlePacketDTO> articles;
 
     public PacketDTO() {
     }
 
-    public PacketDTO(long id, String orderedOn, boolean delivered, int status, UserPacketDTO user, List<ArticlePacketDTO> articles) {
+    public PacketDTO(long id, String orderedOn, boolean delivered, PacketStatus status, UserPacketDTO user, List<ArticlePacketDTO> articles) {
         this.id = id;
         this.orderedOn = orderedOn;
         this.delivered = delivered;
@@ -49,11 +50,11 @@ public class PacketDTO {
         this.delivered = delivered;
     }
 
-    public int getStatus() {
+    public PacketStatus getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(PacketStatus status) {
         this.status = status;
     }
 
