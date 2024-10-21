@@ -1,53 +1,49 @@
 package mx.edu.utez.paqueteria.modules.packet;
 
-import mx.edu.utez.paqueteria.modules.user.User;
-import mx.edu.utez.paqueteria.modules.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/packet")
 public class PacketController {
-    //INYECCION DE SERVICIOS
     @Autowired
-    private UserService userService;
+    private PacketService packetService;
 
-    //ENDPOINTS
-    //Traer todos los usuarios
+    //Endpoints
+    //Traer todos los paquetes
     @GetMapping("")
-    public ResponseEntity<?> findAll(){
-        return userService.findAll();
+    private ResponseEntity<?> findAll(){
+        return packetService.findAll();
     }
 
-    //Traer todos los usuarios por id de rol
-    @GetMapping("/rol/{idRol}")
-    public ResponseEntity<?> findAllByIdRol(@PathVariable("idRol") int idRol){
-        return userService.findAllByIdRol(idRol);
+    //Traer todos los paquetes por id de usuario
+    @GetMapping("/user/{idUser}")
+    private ResponseEntity<?> findAllByIdUser(@PathVariable("idUser") long idUser){
+        return packetService.findAllIdUser(idUser);
     }
 
-    //Traer un usuario
-    @GetMapping("/{idUser}")
-    public ResponseEntity<?> findById(@PathVariable("idUser") long idUser) {
-        return userService.findById(idUser);
+    //Traer paquete por id
+    @GetMapping("/{idPacket}")
+    private ResponseEntity<?> findById(@PathVariable("idPacket") long idPacket){
+        return packetService.findById(idPacket);
     }
 
-    //Guardar un usuario
+    //Guardar paquete
     @PostMapping("")
-    public ResponseEntity<?> save(@RequestBody User user) {
-        return userService.save(user);
+    private ResponseEntity<?> save(@RequestBody Packet packet){
+        return packetService.save(packet);
     }
 
-    //Actualizar un usuario
+    //Actualizar paquete
     @PutMapping("")
-    public ResponseEntity<?> update(@RequestBody User user) {
-        return userService.update(user);
+    private ResponseEntity<?> update(@RequestBody Packet packet){
+        return packetService.update(packet);
     }
 
-    //Eliminar un usuario
-    @DeleteMapping("")
-    public ResponseEntity<?> deleteById(@RequestBody User user) {
-        return userService.deleteById(user);
+    //Actualizar estado del paquete
+    @PutMapping("/status")
+    private ResponseEntity<?> changeStatus(@RequestBody Packet packet){
+        return packetService.changeStatus(packet);
     }
-
 }
