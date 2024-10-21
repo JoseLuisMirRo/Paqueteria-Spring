@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/artcile")
+@RequestMapping("/api/article")
 public class ArticleController {
     //Inyeccion de servicios
     @Autowired
