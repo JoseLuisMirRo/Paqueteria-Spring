@@ -4,9 +4,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface PacketRepository extends JpaRepository<Packet, Long> {
     //Traer todos los pacquetes
     List<Packet> findAll();
@@ -25,7 +27,7 @@ public interface PacketRepository extends JpaRepository<Packet, Long> {
     @Modifying
     @Query(value = "UPDATE packet SET deliverded = :delivered, status = :status, WHERE id = :idPacket", nativeQuery = true)
     Packet changeStatus(
-            @Param("deivered") boolean delivered,
+            @Param("delivered") boolean delivered,
             @Param("status") PacketStatus status,
             @Param("idPacket") long idPacket
     );
