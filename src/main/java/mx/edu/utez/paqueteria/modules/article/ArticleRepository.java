@@ -26,6 +26,6 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     //Decrementar stock por id del articulo
     @Modifying
-    @Query(value="UPDATE artciel SET on_stock = on_stock -1 WHERE id = :idArticle;", nativeQuery = true)
+    @Query(value="UPDATE article SET on_stock = on_stock -1 WHERE id = :idArticle;", nativeQuery = true)
     void decrementStockById(@Param("idArticle") long idArticle);
 }

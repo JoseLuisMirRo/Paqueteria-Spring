@@ -26,7 +26,7 @@ public interface PacketRepository extends JpaRepository<Packet, Long> {
     //Cambiar el estado del paquete
     @Modifying
     @Query(value = "UPDATE packet SET deliverded = :delivered, status = :status, WHERE id = :idPacket", nativeQuery = true)
-    Packet changeStatus(
+    void changeStatus(
             @Param("delivered") boolean delivered,
             @Param("status") PacketStatus status,
             @Param("idPacket") long idPacket
