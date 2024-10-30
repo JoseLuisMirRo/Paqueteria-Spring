@@ -28,4 +28,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "DELETE FROM user WHERE id = :idUser", nativeQuery = true)
     void deleteById(@Param("idUser") long idUser);
 
+    //Buscar usuario por usuario/correo y contrasena.
+    @Query(value = "SELECT * FROM user WHERE password = :password AND (email = :username OR username = :username);", nativeQuery = true)
+    User findByPasswordAndEmailOrUsername(@Param("password") String password, @Param("username") String username);
+
+    //Buscar usuario por nombre de usuario
+    User findByUsername(String username);
+
 }
