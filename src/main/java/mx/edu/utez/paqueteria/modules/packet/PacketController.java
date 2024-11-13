@@ -15,42 +15,42 @@ public class PacketController {
     //Traer todos los paquetes
     @GetMapping("")
     @Secured("ROLE_EMPLOYEE")
-    private ResponseEntity<?> findAll(){
+    public ResponseEntity<?> findAll(){
         return packetService.findAll();
     }
 
     //Traer todos los paquetes por id de usuario
     @GetMapping("/user/{idUser}")
     @Secured({"ROLE_ADMIN","ROLE_CUSTOMER"})
-    private ResponseEntity<?> findAllByIdUser(@PathVariable("idUser") long idUser){
+    public ResponseEntity<?> findAllByIdUser(@PathVariable("idUser") long idUser){
         return packetService.findAllIdUser(idUser);
     }
 
     //Traer paquete por id
     @GetMapping("/{idPacket}")
     @Secured({"ROLE_ADMIN","ROLE_CUSTOMER"})
-    private ResponseEntity<?> findById(@PathVariable("idPacket") long idPacket){
+    public ResponseEntity<?> findById(@PathVariable("idPacket") long idPacket){
         return packetService.findById(idPacket);
     }
 
     //Guardar paquete
     @PostMapping("")
     @Secured("ROLE_CUSTOMER")
-    private ResponseEntity<?> save(@RequestBody Packet packet){
+    public ResponseEntity<?> save(@RequestBody Packet packet){
         return packetService.save(packet);
     }
 
     //Actualizar paquete
     @PutMapping("")
     @Secured("ROLE_CUSTOMER")
-    private ResponseEntity<?> update(@RequestBody Packet packet){
+    public ResponseEntity<?> update(@RequestBody Packet packet){
         return packetService.update(packet);
     }
 
     //Actualizar estado del paquete
     @PutMapping("/status")
     @Secured("ROLE_EMPLOYEE")
-    private ResponseEntity<?> changeStatus(@RequestBody Packet packet){
+    public ResponseEntity<?> changeStatus(@RequestBody Packet packet){
         return packetService.changeStatus(packet);
     }
 }
